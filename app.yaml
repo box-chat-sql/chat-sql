@@ -1,0 +1,40 @@
+runtime: php81  # version of php
+env: standard     # set app engine env to standard
+
+runtime_config:
+  document_root: public
+
+handlers:
+# Serve a directory as a static resource.
+- url: /stylesheets
+  static_dir: stylesheets
+
+
+# Serve images as static resources.
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+
+# Serve your app through a front controller at index.php or public/index.php.
+- url: .*
+  script: auto
+
+env_variables:
+  APP_NAME: "Chat SQL"
+  APP_ENV: production
+  APP_LOG: errorlog
+  APP_DEBUG: true
+  APP_KEY: base64:WTV1/41JZfukw7dbDv3nmwsTaU4vA3jCbuyPjEkaOgc=
+  STORAGE_DIR: /tmp
+  CACHE_DRIVER: database
+  SESSION_DRIVER: database
+  DB_CONNECTION: mysql
+  DB_HOST: localhost
+  DB_PORT: 3306
+  DB_DATABASE: chatsqldb
+  DB_USERNAME: chatsqldb
+  DB_PASSWORD: 'OA9uo4`\m%}(rs.)'
+  DB_SOCKET: "/cloudsql/heroic-dynamo-386505:southamerica-west1:chatsqldb"
+
+beta_settings:
+  cloud_sql_instances: "heroic-dynamo-386505:southamerica-west1:chatsqldb"
