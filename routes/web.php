@@ -5,6 +5,7 @@ use App\Http\Controllers\QueryController;
 use App\Http\Controllers\UploadController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,10 @@ Route::prefix('chat')->group(function () {
     Route::post('/upload', UploadController::class)->name('upload');
     Route::delete('/delete', DeleteController::class)->name('delete');
 });
+
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
